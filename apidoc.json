@@ -1,0 +1,6 @@
+{
+  "name": "API Documentation",
+  "version": "0.0.1",
+  "description": "Base framework for creating ReST API's using Node, Express and MongoDB.",
+  "title": "App - Title"
+}
