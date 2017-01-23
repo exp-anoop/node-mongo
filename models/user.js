@@ -48,15 +48,14 @@ UserSchema.methods.toJSON = function() {
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id: user._id.toHexString(), access}, 'sadsa').toString();
+  var token = jwt.sign({_id: user._id.toHexString(), access}, 'ss1232nhnnbjhjvjvvjvcfx76').toString();
 
   user.tokens.push({access, token});
-  
-  console.log(user);
+
   return user.save().then(() => {
     return token;
   });
-}
+};
 
 UserSchema.statics.findByCredentials = function(email, password) {
 	var User = this;

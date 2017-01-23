@@ -17,7 +17,7 @@ var signup = (req, res) => {
 
 	var body = _.pick(req.body, ['name', 'email', 'password']);
 
-	var user = new User({body});
+	var user = new User(body);
 
 	user.save().then((doc) => {
 		res.send(doc);
@@ -42,6 +42,8 @@ var login = (req, res) => {
 	User.findByCredentials(body.email, body.password).then((user) => {
 		return user.generateAuthToken().then((token) => {
 			res.header('x-auth', token).send(user);
+		}).catch(() => {
+			res.status(401).send();
 		});		
 	}).catch((err) => {
 		res.status(401).send();
