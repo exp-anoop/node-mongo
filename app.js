@@ -18,32 +18,31 @@ app.use(bodyParser.json());
 
 var authenticate = (req, res, next) => {
 
-	// console.log("Through authenticate");
-	
-	next();
+    // console.log("Through authenticate");
+
+    next();
 
 };
 
 
-if(Array.isArray(dependencies)) {
+if (Array.isArray(dependencies)) {
 
-	for (let mod of dependencies) {
-		let modPath = `./modules/${mod}/${mod}.router.js`;
+    for (let mod of dependencies) {
+        let modPath = `./modules/${mod}/${mod}.router.js`;
 
-		if(!fs.existsSync(modPath)) {
-			throw new Error(`Dependency module '${modPath}' not found`);
-		}		
+        if (!fs.existsSync(modPath)) {
+            throw new Error(`Dependency module '${modPath}' not found`);
+        }
 
-		let parts = require(modPath);
-
-		let basepath = parts.base || mod;
-
-		app.use(`/${basepath}`, parts.routes(authenticate));
-	}
+        let parts = require(modPath);
+        let basepath = parts.base || mod;
+        
+        app.use(`/${basepath}`, parts.routes(authenticate));
+    }
 }
 
 app.listen(port, () => {
-	console.log(`App listening to port: ${port} \n`);
+    console.log(`App listening to port: ${port} \n`);
 });
 
 module.exports = app;

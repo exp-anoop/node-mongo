@@ -1,11 +1,15 @@
 {
-    "name": "try",
+    "name": "My Application",
     "version": "0.0.1",
-    "description": "Sample",
+    "description": "Quick start framework for creating ReST API's using Node, Express and MongoDB",
     "main": "app.js",
     "scripts": {
         "start": "nodemon ./app.js",
-        "test": "apidoc -i ./modules/ -o public/apidoc/ && mocha ./modules/**/*.test.js"
+        "test": "apidoc -i ./modules/ -o public/apidoc/ && mocha ./modules/**/*.test.js",
+        "test-watch": "nodemon --exec 'npm test'"
+    },
+    "engines": {
+        "node": "6.9.2"
     },
     "author": "Anoop P R",
     "license": "ISC",
