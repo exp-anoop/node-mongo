@@ -1,10 +1,10 @@
 {
-    "name": "My Application",
+    "name": "Seed",
     "version": "0.0.1",
     "description": "Quick start framework for creating ReST API's using Node, Express and MongoDB",
     "main": "app.js",
     "scripts": {
-        "start": "nodemon ./app.js",
+        "start": "nodemon app.js",
         "test": "apidoc -i ./modules/ -o public/apidoc/ && mocha ./modules/**/*.test.js",
         "test-watch": "nodemon --exec 'npm test'"
     },
