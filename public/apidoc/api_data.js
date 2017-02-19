@@ -2,7 +2,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/auth",
-    "title": "User login",
+    "title": "Login",
     "name": "Login",
     "group": "Auth",
     "success": {
@@ -21,7 +21,7 @@ define({ "api": [
   {
     "type": "delete",
     "url": "/auth",
-    "title": "User logout",
+    "title": "Logout",
     "name": "Logout",
     "group": "Auth",
     "header": {

@@ -2,7 +2,7 @@
   {
     "type": "post",
     "url": "/auth",
-    "title": "User login",
+    "title": "Login",
     "name": "Login",
     "group": "Auth",
     "success": {
@@ -21,7 +21,7 @@
   {
     "type": "delete",
     "url": "/auth",
-    "title": "User logout",
+    "title": "Logout",
     "name": "Logout",
     "group": "Auth",
     "header": {
