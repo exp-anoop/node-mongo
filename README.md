@@ -7,9 +7,13 @@
 
 ## Installation
 
-* Clone the repo
-* Remove .git directory
-* Run npm start / yarn run start for starting the application
-* Run npm apidoc / yarn run apidoc for genarate API documentation
+* Clone the repo ``` git clone https://github.com/exp-anoop/node.git```
+* Remove .git directory ```rm -rf .git```
+* Install dependencies ```npm install```
+* Run ```npm start``` for starting the application
+* Run ```npm apidoc``` for genarate API documentation
 
-## Detailed documentation in progres, also share your valuable comments and features to be added to the seed.
+## Demo Link
+https://blooming-bayou-26551.herokuapp.com
+
+## "Detailed documentation in progress, also share your valuable comments and features to be added to the seed"
