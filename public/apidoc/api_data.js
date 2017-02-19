@@ -1,53 +1,80 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "/users/login",
-    "title": "Login user",
+    "url": "/auth",
+    "title": "User login",
     "name": "Login",
-    "group": "User",
-    "parameter": {
+    "group": "Auth",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\"_id\":\"58a9b4c77f2ce72c6748c672\",\"email\":\"anoop.pr@experionglobal.com\",\"name\":\"Anoop P R\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "modules/auth/auth.controller.js",
+    "groupTitle": "Auth"
+  },
+  {
+    "type": "delete",
+    "url": "/auth",
+    "title": "User logout",
+    "name": "Logout",
+    "group": "Auth",
+    "header": {
       "fields": {
-        "Parameter": [
+        "Header": [
           {
-            "group": "Parameter",
-            "type": "Number",
+            "group": "Header",
+            "type": "String",
             "optional": false,
-            "field": "id",
-            "description": "<p>Users unique ID.</p>"
+            "field": "x-auth",
+            "description": "<p>Users unique access-key.</p>"
           }
         ]
       }
     },
     "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
-          }
-        ]
-      }
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK",
+          "type": "json"
+        }
+      ]
     },
     "version": "0.0.0",
-    "filename": "modules/users/users.controller.js",
-    "groupTitle": "User"
+    "filename": "modules/auth/auth.controller.js",
+    "groupTitle": "Auth"
   },
   {
     "type": "post",
     "url": "/users",
     "title": "Signup user",
     "name": "Signup",
-    "group": "User",
+    "group": "Users",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\"_id\":\"58a9b4c77f2ce72c6748c672\",\"email\":\"anoop.pr@experionglobal.com\",\"name\":\"Anoop P R\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "modules/users/users.controller.js",
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/:id",
+    "title": "Get user information",
+    "name": "getUser",
+    "group": "Users",
     "parameter": {
       "fields": {
         "Parameter": [
@@ -61,28 +88,62 @@ define({ "api": [
         ]
       }
     },
-    "success": {
+    "header": {
       "fields": {
-        "Success 200": [
+        "Header": [
           {
-            "group": "Success 200",
+            "group": "Header",
             "type": "String",
             "optional": false,
-            "field": "firstname",
-            "description": "<p>Firstname of the User.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "lastname",
-            "description": "<p>Lastname of the User.</p>"
+            "field": "x-auth",
+            "description": "<p>Users unique access-key.</p>"
           }
         ]
       }
     },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\"_id\":\"58a9b4c77f2ce72c6748c672\",\"email\":\"anoop.pr@experionglobal.com\",\"name\":\"Anoop P R\"}",
+          "type": "json"
+        }
+      ]
+    },
     "version": "0.0.0",
     "filename": "modules/users/users.controller.js",
-    "groupTitle": "User"
+    "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users",
+    "title": "List all users",
+    "name": "listUsers",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "x-auth",
+            "description": "<p>Users unique access-key.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[{\"_id\":\"58a9bd089e75b138939500c6\",\"email\":\"ajeesh.ag@experionglobal.com\",\"name\":\"Ajeesh A G\"},{\"_id\":\"58a9b4c77f2ce72c6748c672\",\"email\":\"anoop.pr@experionglobal.com\",\"name\":\"Anoop P R\"}]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "modules/users/users.controller.js",
+    "groupTitle": "Users"
   }
 ] });
