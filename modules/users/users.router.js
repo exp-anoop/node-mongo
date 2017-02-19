@@ -6,12 +6,13 @@ var router = express.Router();
 var routes = (authenticate) => {
 
 	router.route("/")
-		.post(controller.signup);
+		.post(controller.signup)
+		.get(authenticate, controller.listUsers);
 
-	router.route("/login")
-		.post(controller.login);
+	router.route("/:id")
+		.get(authenticate, controller.getUser);
 
 	return router;
 }
 
-module.exports = { routes };
+module.exports = { routes, path: 'users'};

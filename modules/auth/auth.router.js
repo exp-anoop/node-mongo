@@ -7,9 +7,9 @@ var routes = (authenticate) => {
 
 	router.route("/")
 		.post(controller.login)
-		.delete(controller.logout);
+		.delete(authenticate, controller.logout);
 
 	return router;
 }
 
-module.exports = { routes };
+module.exports = { routes, path: 'auth' };

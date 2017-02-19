@@ -18,35 +18,33 @@ var signup = (req, res) => {
 
 	var user = new User(body);
 
-	user.save().then((doc) => {
-		res.send(doc);
+	user.save().then((user) => {
+		res.send(user);
 	}).catch((e) => {
 		res.status(400).send(e);
 	});
 };
 
-/**
- * @api {post} /users/login Login user
- * @apiName Login
- * @apiGroup User
- *
- * @apiParam {Number} id Users unique ID.
- *
- * @apiSuccess {String} firstname Firstname of the User.
- * @apiSuccess {String} lastname  Lastname of the User.
- */
-var login = (req, res) => {
-	var body = _.pick(req.body, ['email', 'password']);
-
-	User.findByCredentials(body.email, body.password).then((user) => {
-		return user.generateAuthToken().then((token) => {
-			res.header('x-auth', token).send(user);
-		}).catch(() => {
-			res.status(401).send();
-		});
-	}).catch((err) => {
-		res.status(401).send();
+var listUsers = (req, res) => {
+	User.find().then((users) => {
+		if(!users) {
+			res.status(204).send();
+		}
+		res.send(users);
+	}).catch((e) => {
+		res.status(400).send(e);
 	});
-};
+}
 
-module.exports = { signup, login };
+var getUser = (req, res) => {
+	User.findOne({_id: req.params.id}).then((user) => {
+		if(!user) {
+			res.status(204).send();
+		}
+		res.send(user);
+	}).catch((e) => {
+		res.status(400).send(e);
+	})
+}
+
+module.exports = { signup, listUsers, getUser };

@@ -5,18 +5,19 @@ const validator = require('validator');
 
 const {dependencies} = require('./app.module');
 const {mongoose} = require('./db/mongoose');
+var {authenticate} = require('./middleware/authentication');
+var {cors} = require('./middleware/cors');
 
 const PORT = process.env.PORT || 3000;
 
 var app = express();
 
+app.disable('x-powered-by');
+app.enable('trust proxy');
+
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-
-var authenticate = (req, res, next) => {
-    // console.log("Through authenticate");
-    next();
-};
+app.use(cors);
 
 if (Array.isArray(dependencies)) {
     for (let mod of dependencies) {
@@ -27,7 +28,7 @@ if (Array.isArray(dependencies)) {
         }
 
         let parts = require(modPath);
-        let basepath = parts.base || mod;
+        let basepath = parts.path || mod;
 
         app.use(`/${basepath}`, parts.routes(authenticate));
     }
