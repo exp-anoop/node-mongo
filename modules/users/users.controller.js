@@ -1,4 +1,3 @@
-'use strict';
 const _ = require('lodash');
 
 var {User} = require('./../../models/user');
@@ -44,7 +43,7 @@ var login = (req, res) => {
 			res.header('x-auth', token).send(user);
 		}).catch(() => {
 			res.status(401).send();
-		});		
+		});
 	}).catch((err) => {
 		res.status(401).send();
 	});

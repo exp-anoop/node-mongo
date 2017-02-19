@@ -48,7 +48,7 @@ UserSchema.methods.toJSON = function() {
 UserSchema.methods.generateAuthToken = function () {
   var user = this;
   var access = 'auth';
-  var token = jwt.sign({_id: user._id.toHexString(), access}, 'ss1232nhnnbjhjvjvvjvcfx76').toString();
+  var token = jwt.sign({_id: user._id.toHexString(), access}, process.env.JWT_SECRET).toString();
 
   user.tokens.push({access, token});
 
@@ -78,7 +78,7 @@ UserSchema.pre('save', function(next) {
 
 	if(user.isModified('password')) {
 		bcrypt.genSalt(10, (err, salt) => {
-			
+
 			if(err) throw Error(err);
 
 			bcrypt.hash(user.password, salt, (err, hash) => {

@@ -5,8 +5,8 @@
     "main": "app.js",
     "scripts": {
         "start": "nodemon app.js",
-        "test": "apidoc -i ./modules/ -o public/apidoc/ && mocha ./modules/**/*.test.js",
-        "test-watch": "nodemon --exec 'npm test'"
+        "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha ./modules/**/*.test.js",
+        "apidoc": "apidoc -i ./modules/ -o public/apidoc/"
     },
     "engines": {
         "node": "6.9.2"

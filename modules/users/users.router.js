@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express');
 var controller = require('./users.controller');
 
