@@ -1,5 +1,4 @@
 const _ = require('lodash');
-
 var {User} = require('./../../models/user');
 
 /**
@@ -17,12 +16,11 @@ var signup = (req, res) => {
 
 	var user = new User(body);
 
-	user.save().then((user) => {
-		res.send(user);
-	}).catch((e) => {
-		res.status(400).send(e);
-	});
+	user.save()
+		.then((user) => res.send(user))
+		.catch((e) => res.status(400).send(e));
 };
+
 
 /**
  * @api {get} /users List all users
@@ -41,10 +39,9 @@ var listUsers = (req, res) => {
 			res.status(204).send();
 		}
 		res.send(users);
-	}).catch((e) => {
-		res.status(400).send(e);
-	});
+	}).catch((e) => res.status(400).send(e));
 }
+
 
 /**
  * @api {get} /users/:id Get user information
@@ -64,9 +61,7 @@ var getUser = (req, res) => {
 			res.status(204).send();
 		}
 		res.send(user);
-	}).catch((e) => {
-		res.status(400).send(e);
-	})
+	}).catch((e) => res.status(400).send(e));
 }
 
 module.exports = { signup, listUsers, getUser };

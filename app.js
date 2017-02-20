@@ -1,3 +1,6 @@
+// ========================
+// Get the packages we need
+// ========================
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
@@ -8,17 +11,24 @@ const {mongoose} = require('./db/mongoose');
 var {authenticate} = require('./middleware/authentication');
 var {cors} = require('./middleware/cors');
 
+// =======================
+// Configuration
+// =======================
 const PORT = process.env.PORT || 3000;
 
 var app = express();
 
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(cors);
 app.disable('x-powered-by');
 app.enable('trust proxy');
 
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use(cors);
 
+// =======================
+// Dynamic route loading
+// =======================
 if (Array.isArray(dependencies)) {
     for (let mod of dependencies) {
         let modPath = `./modules/${mod}/${mod}.router.js`;
@@ -34,6 +44,9 @@ if (Array.isArray(dependencies)) {
     }
 }
 
+// =======================
+// Start the server
+// =======================
 app.listen(PORT, () => {
     console.log(`App listening to port: ${PORT} \n`);
 });
