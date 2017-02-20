@@ -1,0 +1,12 @@
+{
+    "development" : {
+        "PORT": 4000,
+        "MONGODB_URI": "mongodb://localhost:27017/seed-application",
+        "JWT_SECRET": "asd6v65v6754c654ce54c6464c767"
+    },
+    "test": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/seed-application-test",
+        "JWT_SECRET": "sas87f8d987bd8d987dds9b7d98d7"
+    }
+}
