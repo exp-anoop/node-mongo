@@ -8,8 +8,7 @@
 ## Installation
 
 * Clone the repo ``` git clone https://github.com/exp-anoop/node.git```
-* Remove .git directory ```rm -rf .git```
-* Install dependencies ```npm install```
+* Install dependencies ```cd node && npm install```
 * Run ```npm start``` for starting the application
 * Run ```npm apidoc``` for genarate API documentation
 

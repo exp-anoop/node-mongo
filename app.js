@@ -44,6 +44,10 @@ if (Array.isArray(dependencies)) {
     }
 }
 
+app.get('*', function(req, res){
+	res.status(404).send("Resource Not Found");
+});
+
 // =======================
 // Start the server
 // =======================
