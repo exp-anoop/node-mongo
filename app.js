@@ -6,8 +6,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const validator = require('validator');
 
-// const {dependencies} = require('./app.module');
-// const {mongoose} = require('./db/mongoose');
+const {dependencies} = require('./app.module');
+const {mongoose} = require('./db/mongoose');
 
 var {authenticate} = require('./middleware/authentication');
 var {cors} = require('./middleware/cors');
