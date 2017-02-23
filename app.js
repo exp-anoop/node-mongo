@@ -8,6 +8,7 @@ const validator = require('validator');
 
 const {dependencies} = require('./app.module');
 const {mongoose} = require('./db/mongoose');
+
 var {authenticate} = require('./middleware/authentication');
 var {cors} = require('./middleware/cors');
 var {response} = require('./middleware/response');
