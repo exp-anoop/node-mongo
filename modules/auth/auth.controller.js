@@ -15,9 +15,9 @@ var login = (req, res) => {
 
     User.findByCredentials(body.email, body.password).then((user) => {
         return user.generateAuthToken()
-            .then((token) => res.header('x-auth', token).send(user))
+            .then((token) => res.header('x-auth', token).return(user))
             .catch(() => Promise.reject());
-    }).catch((e) => res.status(401).send(e));
+    }).catch((e) => res.status(500).return(e));
 }
 
 
@@ -33,8 +33,8 @@ var login = (req, res) => {
  */
 var logout = (req, res) => {
     req.user.removeToken(req.token)
-        .then(() => res.status(200).send())
-        .catch((e) => res.status(400).send(e));
+        .then(() => res.status(200).return())
+        .catch((e) => res.status(400).return(e));
 }
 
 module.exports = { login, logout };

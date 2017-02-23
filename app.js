@@ -10,6 +10,7 @@ const {dependencies} = require('./app.module');
 const {mongoose} = require('./db/mongoose');
 var {authenticate} = require('./middleware/authentication');
 var {cors} = require('./middleware/cors');
+var {response} = require('./middleware/response');
 
 // =======================
 // Configuration
@@ -22,9 +23,9 @@ app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors);
+app.use(response);
 app.disable('x-powered-by');
 app.enable('trust proxy');
-
 
 // =======================
 // Dynamic route loading
@@ -44,9 +45,7 @@ if (Array.isArray(dependencies)) {
     }
 }
 
-app.get('*', function(req, res){
-	res.status(404).send("Resource Not Found");
-});
+app.get('*', (req, res) => res.status(404).return());
 
 // =======================
 // Start the server

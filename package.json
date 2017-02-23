@@ -4,7 +4,7 @@
     "description": "Quick start framework for creating ReST API's using Node, Express and MongoDB",
     "main": "app.js",
     "scripts": {
-        "start": "node app.js",
+        "start": "nodemon app.js",
         "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha ./modules/**/*.test.js",
         "apidoc": "apidoc -i ./modules/ -o public/apidoc/"
     },

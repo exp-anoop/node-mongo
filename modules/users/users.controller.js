@@ -17,8 +17,8 @@ var signup = (req, res) => {
 	var user = new User(body);
 
 	user.save()
-		.then((user) => res.send(user))
-		.catch((e) => res.status(400).send(e));
+		.then((user) => res.return(user))
+		.catch((e) => res.status(400).return(e));
 };
 
 
@@ -36,10 +36,10 @@ var signup = (req, res) => {
 var listUsers = (req, res) => {
 	User.find().then((users) => {
 		if(!users) {
-			res.status(204).send();
+			res.status(204).return();
 		}
-		res.send(users);
-	}).catch((e) => res.status(400).send(e));
+		res.return(users);
+	}).catch((e) => res.status(400).return(e));
 }
 
 
@@ -58,10 +58,10 @@ var listUsers = (req, res) => {
 var getUser = (req, res) => {
 	User.findOne({_id: req.params.id}).then((user) => {
 		if(!user) {
-			res.status(204).send();
+			res.status(204).return();
 		}
-		res.send(user);
-	}).catch((e) => res.status(400).send(e));
+		res.return(user);
+	}).catch((e) => res.status(400).return(e));
 }
 
 module.exports = { signup, listUsers, getUser };
