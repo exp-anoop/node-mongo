@@ -1,0 +1,4 @@
+{
+    "user-invalid-credentials" : "Invalid email or password",
+    "user-not-found": "User not found"
+}

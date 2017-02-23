@@ -58,10 +58,26 @@ var listUsers = (req, res) => {
 var getUser = (req, res) => {
 	User.findOne({_id: req.params.id}).then((user) => {
 		if(!user) {
-			res.status(204).return();
+			return res.status(404).message('user-not-found').return();
 		}
 		res.return(user);
 	}).catch((e) => res.status(400).return(e));
 }
 
-module.exports = { signup, listUsers, getUser };
+/**
+ * @api {get} /users/me Get logged in user information
+ * @apiName me
+ * @apiGroup Users
+ *
+ * @apiHeader {String} x-auth Users unique access-key.
+ *
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {"_id":"58a9b4c77f2ce72c6748c672","email":"anoop.pr@experionglobal.com","name":"Anoop P R"}
+ */
+var me = (req, res) => {
+	if(!req.user) return res.status(404).message('user-not-found').return();
+	return res.return(req.user);
+}
+
+module.exports = { signup, listUsers, getUser, me };

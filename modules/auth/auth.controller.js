@@ -12,12 +12,11 @@ var { User } = require('./../../models/user');
  */
 var login = (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
-
     User.findByCredentials(body.email, body.password).then((user) => {
         return user.generateAuthToken()
             .then((token) => res.header('x-auth', token).return(user))
-            .catch(() => Promise.reject());
-    }).catch((e) => res.status(500).return(e));
+            .catch((e) => Promise.reject(e));
+    }).catch((e) => res.status(401).message('user-invalid-credentials').return(e));
 }
 
 

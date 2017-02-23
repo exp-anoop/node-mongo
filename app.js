@@ -6,12 +6,13 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const validator = require('validator');
 
-const {dependencies} = require('./app.module');
-const {mongoose} = require('./db/mongoose');
+// const {dependencies} = require('./app.module');
+// const {mongoose} = require('./db/mongoose');
 
 var {authenticate} = require('./middleware/authentication');
 var {cors} = require('./middleware/cors');
 var {response} = require('./middleware/response');
+var i18n = require('./middleware/i18n');
 
 // =======================
 // Configuration
@@ -19,7 +20,7 @@ var {response} = require('./middleware/response');
 const PORT = process.env.PORT || 3000;
 
 var app = express();
-
+app.set('i18n', new i18n());
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -46,7 +47,7 @@ if (Array.isArray(dependencies)) {
     }
 }
 
-app.get('*', (req, res) => res.status(404).return());
+app.get('*', (req, res) => res.status(404).message('user-invalid-credentials').return());
 
 // =======================
 // Start the server

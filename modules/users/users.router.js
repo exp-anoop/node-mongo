@@ -9,6 +9,9 @@ var routes = (authenticate) => {
 		.post(controller.signup)
 		.get(authenticate, controller.listUsers);
 
+	router.route("/me")
+		.get(authenticate, controller.me);
+
 	router.route("/:id")
 		.get(authenticate, controller.getUser);
 
