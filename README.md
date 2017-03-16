@@ -10,7 +10,7 @@
 * Clone the repo ``` git clone https://github.com/exp-anoop/node.git```
 * Install dependencies ```cd node && npm install```
 * Run ```npm start``` for starting the application
-* Run ```npm apidoc``` for genarate API documentation
+* Run ```npm run apidoc``` for genarate API documentation
 
 ## Core modifications
 ### Added two new functions to response object
