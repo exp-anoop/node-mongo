@@ -5,6 +5,7 @@ const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const validator = require('validator');
+const helmet = require('helmet');
 
 const {dependencies} = require('./app.module');
 const {mongoose} = require('./db/mongoose');
@@ -21,13 +22,12 @@ const PORT = process.env.PORT || 3000;
 
 var app = express();
 app.set('i18n', new i18n());
+app.use(helmet());
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-app.use(cors);
+// app.use(cors);
 app.use(response);
-app.disable('x-powered-by');
-app.enable('trust proxy');
 
 // =======================
 // Dynamic route loading
