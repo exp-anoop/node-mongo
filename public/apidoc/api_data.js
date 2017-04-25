@@ -145,5 +145,37 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "modules/users/users.controller.js",
     "groupTitle": "Users"
+  },
+  {
+    "type": "get",
+    "url": "/users/me",
+    "title": "Get logged in user information",
+    "name": "me",
+    "group": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "x-auth",
+            "description": "<p>Users unique access-key.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\"_id\":\"58a9b4c77f2ce72c6748c672\",\"email\":\"anoop.pr@experionglobal.com\",\"name\":\"Anoop P R\"}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "modules/users/users.controller.js",
+    "groupTitle": "Users"
   }
 ] });

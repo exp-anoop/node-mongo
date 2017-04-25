@@ -6,6 +6,8 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const validator = require('validator');
 const helmet = require('helmet');
+const multer  = require('multer');
+
 
 const {dependencies} = require('./app.module');
 const {mongoose} = require('./db/mongoose');
