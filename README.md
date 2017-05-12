@@ -21,7 +21,7 @@
 * Clone the repo ``` git clone https://github.com/exp-anoop/node.git seed```.
 * Install dependencies ```cd seed && rm -rf .git && yarn```.
 * Run ```yarn run serve``` for starting the application (will check the code quality before starting the application).
-* Run ```npm run build``` for run the tests and genarate apidoc.
+* Run ```yarn run build``` for run the tests and genarate apidoc.
 
 ## Core modifications
 ### Added two new functions to response object
