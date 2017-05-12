@@ -4,16 +4,12 @@
 const express = require('express');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const validator = require('validator');
 const helmet = require('helmet');
-const multer  = require('multer');
-
 
 const {dependencies} = require('./app.module');
-const {mongoose} = require('./db/mongoose');
-
+var {mongoose} = require('./db/mongoose');
 var {authenticate} = require('./middleware/authentication');
-var {cors} = require('./middleware/cors');
+var {logger} = require('./middleware/logs');
 var {response} = require('./middleware/response');
 var i18n = require('./middleware/i18n');
 
@@ -25,10 +21,10 @@ const PORT = process.env.PORT || 3000;
 var app = express();
 app.set('i18n', new i18n());
 app.use(helmet());
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(logger());
+app.use(express.static(`${__dirname}/public`));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(cors);
 app.use(response);
 
 // =======================
@@ -49,13 +45,11 @@ if (Array.isArray(dependencies)) {
     }
 }
 
-app.get('*', (req, res) => res.status(404).message('user-invalid-credentials').return());
+app.get('*', (req, res) => res.status(404).return());
 
 // =======================
 // Start the server
 // =======================
-app.listen(PORT, () => {
-    console.log(`App listening to port: ${PORT} \n`);
-});
+app.listen(PORT);
 
 module.exports = app;
